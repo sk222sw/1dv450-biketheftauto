@@ -1,0 +1,10 @@
+<h3>List all thefts</h3>
+
+<ul>
+  <!-- Using theft when I have set the controllerAs in the app.js and routeProvider -->
+  <li data-ng-repeat="_theft in thefts.theftList">
+    {{ _theft.description }} <a data-ng-href='theft/{{_theft.id}}'>More info</a>
+  </li>
+
+</ul>
+
