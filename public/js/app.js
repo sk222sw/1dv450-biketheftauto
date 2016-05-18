@@ -6,6 +6,11 @@ angular
         .when('/', {
           templateUrl: '/partials/index.html'
         })
+        .when('/login', {
+          templateUrl: '/partials/login.html',
+          controller: 'LoginController',
+          controllerAs: 'login'
+        })
         .when('/thefts', {
           templateUrl: '/partials/theft-list.html',
           controller: 'TheftListController',

@@ -19,9 +19,9 @@ function TagDetailsController(TagService, $routeParams, Flash) {
 
   TagService.getThefts($routeParams.id)
     .then(function handleTheftsByTag(data){
-      vm.tag = data.tag;
-      vm.theftsByTag = data.thefts;
-      console.log(data.thefts[0]);
+      console.log(data.data.tag);
+      vm.tag = data.data.tag;
+      vm.theftsByTag = data.data.thefts;
     })
     .catch(function handleError(err) {
         vm.flash("error", err.data.error);
