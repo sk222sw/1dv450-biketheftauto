@@ -7,4 +7,22 @@
 <p>
   {{ theft.theft.time}}
 </p>
+<div class="theft-position">
+  <h4>Location</h4>
+  <p>
+    {{ theft.theft.position.address }}
+  </p>
+  <p>
+    {{ theft.theft.position.latitude }}
+  </p>
+  <p>
+    {{ theft.theft.position.longitude }}
+  </p>
+</div>
+<div class="theft-tags">
+  <h4>Tags</h4>
+    <p data-ng-repeat="tag in theft.theft.tags"> <!-- first theft is the controller, the second is the view model data name -->
+      <a href="/tags/{{tag.id}}">{{ tag.name }}</a>
+    </p>
+</div>
 <flash-message></flash-message>

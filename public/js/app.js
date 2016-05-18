@@ -16,6 +16,11 @@ angular
           controller: 'TheftDetailController',
           controllerAs: 'theft'
         })
+        .when("/tags/:id", {
+          templateUrl: '/partials/tag-detail.html',
+          controller: 'TagDetailsController',
+          controllerAs: 'tag'
+        })
         .otherwise({
           redirectTo: '/'
         });

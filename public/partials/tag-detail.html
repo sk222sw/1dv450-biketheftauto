@@ -1,0 +1,11 @@
+<h3 data-ng-model="tag">Thefts tagged with {{ tag.tag.name }}</h3>
+<flash-message></flash-message>
+<div class="thefts-by-tag-list">
+  <div data-ng-repeat="theft in tag.theftsByTag">
+    <div data-ng-click="tag.showTheftInfo()">
+      <a data-ng-href="/theft/{{theft.id}}">
+        {{ theft.description }}
+      </a>
+    </div>
+  </div>
+</div>
