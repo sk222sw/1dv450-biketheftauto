@@ -3,11 +3,12 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "angular-flash": "^1.2.0",
     "body-parser": "^1.0.2",
     "error-handler": "^0.1.4",
+    "errorhandler": "^1.1.1",
     "express": "~4.1.1",
     "method-override": "^1.0.0",
-    "morgan": "^1.0.0",
-    "errorhandler": "^1.1.1"
+    "morgan": "^1.0.0"
   }
 }

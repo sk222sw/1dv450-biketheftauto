@@ -2,8 +2,9 @@
 
 <p>
   <!-- Using theft when I have set the controllerAs in the app.js and routeProvider -->
-  Name: {{ theft.name }}
+  {{ theft.theft.description }} <!-- first theft is the controller, the second is the view model data name -->
 </p>
 <p>
-  Age: {{ theft.age}}
+  {{ theft.theft.time}}
 </p>
+<flash-message></flash-message>

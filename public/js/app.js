@@ -1,5 +1,5 @@
 angular
-  .module("bikeTheft", ['ngRoute'])
+  .module("bikeTheft", ['ngRoute', "ngFlash"])
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $routeProvider

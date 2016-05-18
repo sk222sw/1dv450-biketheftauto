@@ -1,22 +1,25 @@
-// register the controller to the module
 angular
   .module("bikeTheft")
-  .controller("TheftListController", TheftListController); // registrera med namn, funktion
+  .controller("TheftListController", TheftListController);
 
-// inject the service - no need if we use the registered name as the funtion parameters eg. TheftService
- //TheftListController.$inject = ['TheftService'];
+ TheftListController.$inject = ['TheftService', "Flash"];
 
-function TheftListController(TheftService) {
+function TheftListController(TheftService, Flash) {
   var vm = this;
 
-  TheftService.get()
+  vm.flash = function(type, message) {
+    var id = Flash.create(type, message, 0, {class: 'custom-class', id: 'custom-id'}, true);
+  }
+
+  // TODO: Figure out why this runs twice.
+  TheftService.getAll()
     .then(function (data) {
-      console.log("hedsfkdjfsj", data.data.thefts);
       vm.theftList = data.data.thefts;
     })
     .catch(function (err) {
-      vm.flash = "API error: " + err.data.error;
-      console.log(err);
-      console.log("Error!");
-    })
+      var flashMessage = err.data !== null ?
+                          "API error: " + err.data.error :
+                          "Can't connect to the API server, please try again later.";
+      vm.flash("error", flashMessage);
+    });
 }

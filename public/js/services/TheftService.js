@@ -1,24 +1,37 @@
-
 angular
   .module("bikeTheft")
   .factory('TheftService', TheftService);
 
-TheftService.inject = ["$http", "$q", "$timeout"];
+TheftService.inject = ["$http", "$q"];
 
-function TheftService($http, $q, $timeout) {
+function TheftService($http, $q) {
+
+  var apiUrl = "https://bta-back-sk222sw.c9users.io/api/";
+  var theftsUrl = apiUrl + "thefts/";
+  var apiKey = "lsNPmzUUcC8Zd1U67_KQ-A"
+  var config = {
+  headers: {
+      "Api-Key": apiKey
+    },
+    cache: true
+  }
+
+  /**
+   * returns the API url for getting one theft
+   *
+   * @param id theft ID from
+   * @returns string url
+   */
+  function oneTheft(id) {
+    return theftsUrl + id;
+  }
 
   return {
-    get:function() {
 
+    getAll: function() {
       var getAll = $q.defer();
 
-      var config = {
-        headers: {
-          "Api-Key": "lsNPmzUUcC8Zd1U67_KQ-AHEJ"
-        }
-      }
-
-      $http.get("https://bta-back-sk222sw.c9users.io/api/thefts", config)
+      $http.get(theftsUrl, config)
         .then(function success(response) {
           getAll.resolve(response);
         }, function error(err) {
@@ -28,24 +41,18 @@ function TheftService($http, $q, $timeout) {
       return getAll.promise;
     },
 
-    doShit: function () {
-      console.log("hej");
-      var task = $q.defer();
+    getTheft: function(id) {
 
-      $timeout(function() {
-        console.log("he");
-        task.resolve();
-      }, 1000);
+      var getTheft = $q.defer();
 
-      return task.promise;
-    },
+      $http.get(oneTheft(id), config)
+        .then(function success(response) {
+          getTheft.resolve(response);
+        }, function error(err) {
+          getTheft.reject(err);
+        })
 
-    getTheft:function(id) {
-      var result = theftList.filter(function(p) {
-          return p.id.toString() === id.toString();
-      })[0];
-
-      return result;
+      return getTheft.promise;
     }
 
   };
