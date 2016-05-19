@@ -2,9 +2,9 @@ angular
   .module("bikeTheft")
   .controller("TheftDetailController", TheftDetailController);
 
-TheftDetailController.$inject = ['$routeParams', 'TheftService', "Flash", "$location"];
+TheftDetailController.$inject = ['$routeParams', 'TheftService', "Flash", "$location", "$localStorage"];
 
-function TheftDetailController($routeParams, theftService, Flash, $location) {
+function TheftDetailController($routeParams, theftService, Flash, $location, $localStorage) {
   var vm = this;
 
   vm.flash = function(type, message) {
@@ -13,7 +13,6 @@ function TheftDetailController($routeParams, theftService, Flash, $location) {
 
   theftService.getTheft($routeParams.id)
     .then(function handleTheftData(theft) {
-      console.log(theft.data.theft.tags)
       vm.theft = theft.data.theft
     })
     .catch(function handleError(err) {

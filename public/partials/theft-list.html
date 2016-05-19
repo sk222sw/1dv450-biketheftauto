@@ -1,5 +1,7 @@
 <h3>List all thefts</h3>
-
+<div ng-show="thefts.showLogoutButton">
+  <a href="">Log out</a>
+</div>
 <ul>
   <!-- Using theft when I have set the controllerAs in the app.js and routeProvider -->
   <li data-ng-repeat="_theft in thefts.theftList">

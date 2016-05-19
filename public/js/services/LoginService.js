@@ -2,25 +2,26 @@ angular
   .module("bikeTheft")
   .factory("LoginService", LoginService);
 
-LoginService.inject = ["$http", "HttpService", "$localStorage"];
+LoginService.inject = ["$http", "HttpService", "$localStorage", "$q"];
 
-function LoginService($http, HttpService, $localStorage) {
+function LoginService($http, HttpService, $localStorage, $q) {
 
   login = function(user) {
+    var loginPromise = $q.defer();
+
     HttpService.doLogin(user)
       .then(function(response) {
         var jwt = response.data.jwt;
         console.log(response.data)
-        $localStorage.currentUser = { email: "so@nny.com", token: jwt };
+        $localStorage.currentUser = { email: user.email, token: jwt };
         $http.defaults.headers.common.Authorization = "Bearer " + jwt;
-        // console.log(jwtHelper.ge tTokenExpirationDate(jwt));
-      })
-      .then(function() {
-        console.table($http.defaults.headers)
+        loginPromise.resolve(true);
       })
       .catch(function(error) {
-        // console.log(error);
+        loginPromise.resolve(false)
       })
+
+      return loginPromise.promise;
   }
 
   logout = function() {

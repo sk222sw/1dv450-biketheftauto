@@ -11,6 +11,15 @@ angular
           controller: 'LoginController',
           controllerAs: 'login'
         })
+        .when('/logout', {
+          templateUrl: "/partials/index.html",
+          controller: 'LogoutController',
+        })
+        .when('/new', {
+          templateUrl: '/partials/new-theft.html',
+          controller: 'TheftController',
+          controllerAs: 'theft'
+        })
         .when('/thefts', {
           templateUrl: '/partials/theft-list.html',
           controller: 'TheftListController',

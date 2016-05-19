@@ -2,9 +2,13 @@ angular
   .module("bikeTheft")
   .controller("LoginController", LoginController);
 
-LoginController.inject = ["LoginService", "Flash", "jwtHelper"];
+LoginController.inject = ["LoginService", "Flash", "jwtHelper", "$localStorage", "$location"];
 
-function LoginController(LoginService, Flash, jwtHelper) {
+function LoginController(LoginService, Flash, jwtHelper, $localStorage, $location) {
+  if ($localStorage.currentUser) {
+    $location.path("/thefts");
+    return;
+  }
   var vm = this;
 
   vm.flash = function(type, message) {
@@ -13,18 +17,17 @@ function LoginController(LoginService, Flash, jwtHelper) {
   // LoginService.Login();
 
   vm.login = function(user) {
-    LoginService.login(user)
-  }
+    if ($localStorage.currentUser) {
 
-  // LoginService.login()
-    // .then(function(response) {
-    //   vm.flash("success", "Logged in!");
-    //   var jwt = response.data.jwt;
-    //   console.log(jwt);
-    //   console.log(jwtHelper.getTokenExpirationDate(jwt));
-    // })
-    // .catch(function(error) {
-    //   vm.flash("error", "User authentication failed.");
-    //   console.log(error);
-    // })
+    } else {
+      LoginService.login(user)
+        .then(function(isLoggedIn) {
+          if (isLoggedIn) {
+            vm.flash("success", "logged in");
+          } else {
+            vm.flash("error", "Wrong email or password.");
+          }
+        });
+    }
+  }
 }
