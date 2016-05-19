@@ -1,4 +1,11 @@
+<flash-message></flash-message>
 <h3>Log in</h3>
-<p>Studies show that the best way to prevent bike thefts is
-  by logging in.
+<p>
+  Studies show that the best way to prevent bike thefts is by logging in.
 </p>
+
+<form class="form login-form">
+  Email: <input type="text" data-ng-model="user.email" ng-init="user.email='so@nny.com'" >
+  Password: <input type="password" data-ng-model="user.password" ng-init="user.password='hej'" />
+  <input type="submit" data-ng-click="login.login(user)" value="Login" />
+</form>

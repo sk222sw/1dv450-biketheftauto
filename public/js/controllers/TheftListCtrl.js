@@ -2,9 +2,9 @@ angular
   .module("bikeTheft")
   .controller("TheftListController", TheftListController);
 
- TheftListController.$inject = ['TheftService', "Flash"];
+ TheftListController.$inject = ['TheftService', "Flash", "jwtHelper"];
 
-function TheftListController(TheftService, Flash) {
+function TheftListController(TheftService, Flash, jwtHelper) {
   var vm = this;
 
   vm.flash = function(type, message) {
