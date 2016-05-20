@@ -2,19 +2,10 @@ angular
   .module("bikeTheft")
   .controller("LogoutController", LogoutController);
 
-LogoutController.$inject = ["LoginService", "$location", "$localStorage"];
+LogoutController.$inject = ["$location", "$localStorage"];
 
-function LogoutController(LoginService, $location, $localStorage) {
+function LogoutController($location, $localStorage) {
+  // Sorry, this controller isn't that exciting right now. Go watch a movie if you want some excitement.
   delete $localStorage.currentUser;
   $location.path("/");
-  if ($location.currentUser) {
-    console.log($localStorage.currentUser)
-    return;
-  } else {
-    console.log($localStorage.currentUser);
-    console.log("nboee");
-  }
-  // console.log("pendejo")
-  // LoginService.logout();
-  // $location.path("/")
 }

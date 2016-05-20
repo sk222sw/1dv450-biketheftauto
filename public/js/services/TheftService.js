@@ -2,7 +2,7 @@ angular
   .module("bikeTheft")
   .factory('TheftService', TheftService);
 
-TheftService.inject = ["HttpService"];
+TheftService.$inject = ["HttpService"];
 
 function TheftService(HttpService) {
   return {

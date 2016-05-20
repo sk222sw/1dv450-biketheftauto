@@ -1,7 +1,32 @@
 <h3>List all thefts</h3>
 <div ng-show="thefts.showLogoutButton">
-  <a href="">Log out</a>
+  <a ng-click="thefts" href="">Log out</a>
 </div>
+<!-- <ng-map center="Sweden" zoom="4">
+  <marker
+    id="{{theft.id}}"
+    data-ng-repeat="theft in thefts.theftList"
+    position="{{theft.position.address}}"
+    data-on-click="thefts.showInfo(theft)">
+  </marker>
+  <info-window id="theft-window">
+    <div ng-non-bindable="">
+
+    </div>
+  </info-window>
+</ng-map> -->
+<ng-map default-style="true" center="current-location" zoom="10">
+  <marker id='{{theft.id}}' position="{{theft.position.address}}"
+    ng-repeat="theft in thefts.theftList"
+    data-on-click="thefts.showInfo(theft)">
+  </marker>
+  <!-- <marker position="current-location" on-click="map.showInfoWindow('foo-iw')"></marker> -->
+  <info-window id="foo-iw">
+    <div ng-non-bindable="">
+      {{ thefts.selectedTheft.position.address }}
+    </div>
+  </info-window>
+</ng-map>
 <ul>
   <!-- Using theft when I have set the controllerAs in the app.js and routeProvider -->
   <li data-ng-repeat="_theft in thefts.theftList">
@@ -9,4 +34,3 @@
   </li>
   <flash-message></flash-message>
 </ul>
-

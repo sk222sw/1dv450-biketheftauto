@@ -14,7 +14,6 @@ function LoginController(LoginService, Flash, jwtHelper, $localStorage, $locatio
   vm.flash = function(type, message) {
     var id = Flash.create(type, message, 0, {class: 'custom-class', id: 'custom-id'}, true);
   }
-  // LoginService.Login();
 
   vm.login = function(user) {
     if ($localStorage.currentUser) {

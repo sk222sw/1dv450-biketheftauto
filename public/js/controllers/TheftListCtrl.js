@@ -2,24 +2,29 @@ angular
   .module("bikeTheft")
   .controller("TheftListController", TheftListController);
 
- TheftListController.$inject = ['TheftService', "Flash", "jwtHelper", "$localStorage"];
+ TheftListController.$inject = ['TheftService', "Flash", "jwtHelper", "$localStorage", "NgMap"];
 
-function TheftListController(TheftService, Flash, jwtHelper, $localStorage) {
+function TheftListController(TheftService, Flash, jwtHelper, $localStorage, NgMap) {
   var vm = this;
+
+  NgMap.getMap().then(function(map) {
+    console.log('map', map);
+    vm.map = map;
+  });
 
   vm.flash = function(type, message) {
     var id = Flash.create(type, message, 0, {class: 'custom-class', id: 'custom-id'}, true);
   }
 
-  // $localStorage.currentUser = undefined;
-  // if ($localStorage.currentUser) {
-  //   vm.showLogoutButton = true;
-  // }
+  vm.showInfo = function(e, theft) {
+    vm.selectedTheft = theft;
+    vm.map.showInfoWindow('foo-iw', theft.id);
+  };
 
-  // TODO: Figure out why this runs twice.
   TheftService.getAll()
     .then(function (data) {
       vm.theftList = data.data.thefts;
+      console.log(vm.theftList);
     })
     .catch(function (err) {
       var flashMessage = err.data !== null ?

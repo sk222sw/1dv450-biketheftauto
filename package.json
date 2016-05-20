@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "angular-flash": "^1.2.0",
+    "angular-google-maps": "^2.3.3",
     "body-parser": "^1.0.2",
     "error-handler": "^0.1.4",
     "errorhandler": "^1.1.1",

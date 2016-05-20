@@ -11,13 +11,7 @@ function TheftController(TheftService, $localStorage, $location) {
   newTheft();
 
   function newTheft() {
-
-    if ($localStorage.currentUser) {
-      console.log("is logged in");
-    } else {
-      console.log("hej");
-      $location.path("/login");
-    }
+    
   }
 
 }

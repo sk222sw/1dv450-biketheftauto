@@ -10,3 +10,14 @@ body {
 #flash-message {
   padding: 10px;
 }
+
+#map-container {
+  width: 200px;
+  height: 200px;
+}
+
+#foo-iw {
+  width: 200px;
+  height: 200px;
+  background: red;
+}

@@ -1,5 +1,5 @@
 angular
-  .module("bikeTheft", ['ngRoute', "ngFlash", "angular-jwt", "ngStorage"])
+  .module("bikeTheft", ['ngRoute', "ngFlash", "angular-jwt", "ngStorage", "ngMap"])
   .config(['$routeProvider', '$locationProvider',
     function($routeProvider, $locationProvider) {
       $routeProvider

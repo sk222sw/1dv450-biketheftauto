@@ -11,10 +11,6 @@ function TagDetailsController(TagService, $routeParams, Flash) {
     var id = Flash.create(type, message, 0, {class: 'custom-class', id: 'custom-id'}, true);
   }
 
-  vm.showTheftInfo = function() {
-    console.log(this);
-  }
-
   vm.active = false;
 
   TagService.getThefts($routeParams.id)

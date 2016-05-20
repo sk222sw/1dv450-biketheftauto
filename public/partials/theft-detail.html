@@ -18,10 +18,11 @@
   <p>
     {{ theft.theft.position.longitude }}
   </p>
+  <p>Created by {{ theft.theft.creator.email }}</p>
 </div>
 <div class="theft-tags">
   <h4>Tags</h4>
-    <p data-ng-repeat="tag in theft.theft.tags"> <!-- first theft is the controller, the second is the view model data name -->
+    <p data-ng-repeat="tag in theft.theft.tags">
       <a href="/tags/{{tag.id}}">{{ tag.name }}</a>
     </p>
 </div>
