@@ -18,7 +18,7 @@ angular
         .when('/new', {
           templateUrl: '/partials/new-theft.html',
           controller: 'TheftController',
-          controllerAs: 'theft'
+          controllerAs: 'vm'
         })
         .when('/thefts', {
           templateUrl: '/partials/theft-list.html',

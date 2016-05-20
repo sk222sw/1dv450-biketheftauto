@@ -11,7 +11,7 @@
   <info-window id="map-info-window" position="{{thefts.selectedTheft.position.latitude}},{{thefts.selectedTheft.position.longitude}}">
     <div ng-non-bindable="">
       {{ thefts.selectedTheft.position.address }}
-      <a data-ng-href='theft/{{thefts.selectedTheft.id}}'>Investigate</a>
+      <a data-ng-href='theft/{{thefts.selectedTheft.id}}' data-ng-click="thefts.hideInfoWindow()">Investigate</a>
     </div>
   </info-window>
 </ng-map>

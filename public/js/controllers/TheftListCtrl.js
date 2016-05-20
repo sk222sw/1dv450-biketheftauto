@@ -16,6 +16,10 @@ function TheftListController(TheftService, Flash, jwtHelper, $localStorage, NgMa
     var id = Flash.create(type, message, 0, {class: 'custom-class', id: 'custom-id'}, true);
   }
 
+  vm.hideInfoWindow = function() {
+    vm.map.hideInfoWindow("map-info-window");
+  }
+
   vm.showInfo = function(e, theft) {
     vm.selectedTheft = theft;
     vm.map.showInfoWindow('map-info-window', theft.id);
@@ -24,7 +28,6 @@ function TheftListController(TheftService, Flash, jwtHelper, $localStorage, NgMa
   TheftService.getAll()
     .then(function (data) {
       vm.theftList = data.data.thefts;
-      console.log(vm.theftList);
     })
     .catch(function (err) {
       var flashMessage = err.data !== null ?

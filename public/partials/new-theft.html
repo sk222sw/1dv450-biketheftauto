@@ -1,9 +1,17 @@
 <h3>New Theft</h3>
+<flash-message></flash-message>
 <form class="form new-theft" id="new-theft-form">
-  <textarea form="new-theft-form" name="new-theft-description" id="" cols="30" rows="10"></textarea>
-  <input type="date">
-  <input type="time">
-  <input type="submit" value="Add">
+  <textarea data-ng-model="newTheft.description" name="new-theft-description" id="" cols="30" rows="10" required></textarea>
+  <input data-ng-model="newTheft.date" type="date" required>
+  <input data-ng-model="newTheft.time" type="time">
+  <input data-ng-model="newTheft.address" type="text" name="new-theft-address" data-ng-model="vm.theftAddress" />
+  <input type="submit" value="Add" data-ng-click="vm.createNewTheft(newTheft)">
 </form>
 
-<a data-ng-href="logout">Log out</a>
+<ng-map center="current-location">
+  <marker
+    position="current-location"
+    draggable="true"
+    on-dragend="vm.getPositionFromMarker(marker)"
+  </marker>
+</ng-map>
