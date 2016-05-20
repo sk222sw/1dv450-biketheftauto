@@ -1,7 +1,24 @@
 <h1>Information about the theft</h1>
 
+<ng-map
+  default-style="true"
+  center="
+    {{theft.theft.position.latitude}},
+    {{theft.theft.position.longitude}}
+  "
+  zoom="15">
+  <marker
+    position="{{theft.theft.position.address}}"
+    data-on-click="map.showInfoWindow('map-info-window')">
+  </marker>
+  <info-window id="map-info-window" position="{{theft.theft.position.latitude}},{{theft.theft.position.longitude}}">
+    <div ng-non-bindable="">
+      {{ theft.theft.position.address }}
+    </div>
+  </info-window>
+</ng-map>
+
 <p>
-  <!-- Using theft when I have set the controllerAs in the app.js and routeProvider -->
   {{ theft.theft.description }} <!-- first theft is the controller, the second is the view model data name -->
 </p>
 <p>

@@ -18,7 +18,7 @@ function TheftListController(TheftService, Flash, jwtHelper, $localStorage, NgMa
 
   vm.showInfo = function(e, theft) {
     vm.selectedTheft = theft;
-    vm.map.showInfoWindow('foo-iw', theft.id);
+    vm.map.showInfoWindow('map-info-window', theft.id);
   };
 
   TheftService.getAll()

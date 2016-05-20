@@ -8,7 +8,7 @@
     ng-repeat="theft in thefts.theftList"
     data-on-click="thefts.showInfo(theft)">
   </marker>
-  <info-window id="foo-iw" position="{{thefts.selectedTheft.position.latitude}},{{thefts.selectedTheft.position.longitude}}">
+  <info-window id="map-info-window" position="{{thefts.selectedTheft.position.latitude}},{{thefts.selectedTheft.position.longitude}}">
     <div ng-non-bindable="">
       {{ thefts.selectedTheft.position.address }}
       <a data-ng-href='theft/{{thefts.selectedTheft.id}}'>Investigate</a>
