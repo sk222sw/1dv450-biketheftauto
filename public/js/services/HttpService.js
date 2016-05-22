@@ -1,18 +1,26 @@
 angular.module("bikeTheft")
   .factory("HttpService", HttpService);
 
-HttpService.inject = ["$http", "$q"];
+HttpService.inject = ["$http", "$q", "$localStorage"];
 
-function HttpService($http, $q) {
+function HttpService($http, $q, $localStorage) {
 
   var apiUrl = "https://bta-back-sk222sw.c9users.io/api/";
   var theftsUrl = apiUrl + "thefts/";
+  var allThefts = theftsUrl + "?limit=100";
   var tagsUrl = apiUrl + "tags/";
   var loginUrl = "https://bta-back-sk222sw.c9users.io/knock/auth_token";
   var apiKey = "lsNPmzUUcC8Zd1U67_KQ-A"
   var headers = {
-      "Api-Key": apiKey
+      "Content-Type": "application/json",
+      "Api-Key": apiKey,
+      "Authorization": jsonWebToken()
   };
+
+  function jsonWebToken() {
+    console.log($localStorage.currentUser);
+    return $localStorage.currentUser.token || "";
+  }
 
   /**
    * returns the API url for getting one theft
@@ -67,7 +75,7 @@ function HttpService($http, $q) {
   }
 
   return {
-    getAllThefts: function() { return request("GET", theftsUrl); },
+    getAllThefts: function() { return request("GET", allThefts); },
     getTheftById: function(id) { return request("GET", oneTheft(id)); },
     getTheftsByTag: function(id) { return request("GET", theftsByTag(id)); },
     doLogin: function(user) { return login(user); },

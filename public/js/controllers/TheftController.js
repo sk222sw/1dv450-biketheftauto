@@ -13,7 +13,7 @@ function TheftController(TheftService, Flash, $localStorage, $location, $scope) 
   }
 
   vm.flash = function(type, message) {
-    var id = Flash.create(type, message, 0, {class: 'custom-class', id: 'custom-id'}, true);
+    var id = Flash.create(type, message, 5000, {class: 'custom-class', id: 'custom-id'}, true);
   }
 
   vm.createNewTheft = function (newTheft) {
@@ -26,9 +26,10 @@ function TheftController(TheftService, Flash, $localStorage, $location, $scope) 
         || isTheftPositionMissing()) {
       return;
     }
-    console.log(vm.theftAddress === "");
     newTheft.latitude = vm.theftAddress.split(",")[0];
     newTheft.longitude = vm.theftAddress.split(",")[1];
+
+    newTheft.changedDate = moment(newTheft.date).format("YYYY-MM-D").toString();
     TheftService.createNewTheft(newTheft);
   }
 
