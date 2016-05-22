@@ -55,6 +55,7 @@ function HttpService($http, $q) {
     return tagsUrl + id + "/?thefts=true";
   }
 
+  // refactor this to to be sent through the other service layers
   function login(user) {
     var data = {
       "auth": {
@@ -69,6 +70,7 @@ function HttpService($http, $q) {
     getAllThefts: function() { return request("GET", theftsUrl); },
     getTheftById: function(id) { return request("GET", oneTheft(id)); },
     getTheftsByTag: function(id) { return request("GET", theftsByTag(id)); },
-    doLogin: function(user) { return login(user); }
+    doLogin: function(user) { return login(user); },
+    newTheft: function(theft) { return request("POST", theftsUrl, theft); }
   }
 }

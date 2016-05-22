@@ -2,7 +2,7 @@ angular
   .module("bikeTheft")
   .controller("LoginController", LoginController);
 
-LoginController.inject = ["LoginService", "Flash", "jwtHelper", "$localStorage", "$location"];
+LoginController.$inject = ["LoginService", "Flash", "jwtHelper", "$localStorage", "$location"];
 
 function LoginController(LoginService, Flash, jwtHelper, $localStorage, $location) {
   if ($localStorage.currentUser) {
