@@ -6,6 +6,15 @@ TheftService.$inject = ["HttpService"];
 
 function TheftService(HttpService) {
 
+  function makeTags(tagString) {
+    var tagArray = tagString.split(",");
+    var tags = [];
+    for (var i = 0; i < tagArray.length; i++) {
+      tags.push({name: tagArray[i]});
+    }
+    return tags;
+  }
+
   function createNewTheft(theft) {
     var newTheft =
     {
@@ -16,7 +25,9 @@ function TheftService(HttpService) {
         "longitude": theft.longitude
       }
     }
-    console.log(newTheft);
+    if (theft.tags !== undefined) {
+      newTheft.theft.tags = makeTags(theft.tags);
+    }
     HttpService.newTheft(newTheft);
   }
 

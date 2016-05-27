@@ -5,8 +5,7 @@
 <form class="form new-theft" id="new-theft-form">
   <textarea data-ng-model="newTheft.description" name="new-theft-description" id="" cols="30" rows="10" required></textarea>
   <input data-ng-model="newTheft.date" type="date" required>
-  <input data-ng-model="newTheft.time" type="time">
-  <input data-ng-model="newTheft.address" type="text" name="new-theft-address" data-ng-model="vm.theftAddress" />
+  <input type="text" data-ng-model="newTheft.tags" value="" placeholder="add,tags,separated,by,commas" />
   <input type="submit" value="Add" data-ng-click="vm.createNewTheft(newTheft)">
 </form>
 

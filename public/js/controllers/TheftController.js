@@ -12,18 +12,18 @@ function TheftController(TheftService, Flash, $localStorage, $location, $scope) 
     return;
   }
 
+  vm.date = "2012-02-01";
+
   vm.flash = function(type, message) {
     var id = Flash.create(type, message, 5000, {class: 'custom-class', id: 'custom-id'}, true);
   }
 
   vm.createNewTheft = function (newTheft) {
     // dont do anything if things aren't valid. maybe there's some angular magic for this. #TODO
-    if (newTheft == undefined
-        || newTheft == null
-        || newTheft.description == undefined
+    if ( newTheft.description == undefined
         || newTheft.date == undefined
-        || isDateInTheFuture(newTheft.date)
-        || isTheftPositionMissing()) {
+        || dateIsInTheFuture(newTheft.date)
+        || theftPositionIsMissing()) {
       return;
     }
     newTheft.latitude = vm.theftAddress.split(",")[0];
@@ -36,14 +36,14 @@ function TheftController(TheftService, Flash, $localStorage, $location, $scope) 
   /**
   * returns true if the argument date is in the future
   */
-  function isDateInTheFuture(date) {
+  function dateIsInTheFuture(date) {
     if (new Date(date).getUnixTime() > Date.now() / 1000) {
       vm.flash("error", "Date must be in the past.");
       return true;
     } return false;
   }
 
-  function isTheftPositionMissing() {
+  function theftPositionIsMissing() {
     if (vm.theftAddress === "") {
       vm.flash("error", "Please use the map to point out the place of the theft.")
       return true;
